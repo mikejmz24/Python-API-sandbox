@@ -34,32 +34,19 @@ def createUser(firstName, lastName, age):
     global ID
     ID += 1
     return createdUser
-    # users.append(User(firstName, lastName, age))
-    # print("User", firstName, lastName, "was added successfully!")
 
 def viewUser(id):
-    foundUsers = [x for x in users if x.id == id]
-    if len(foundUsers) == 0:
-        print("User does not exist :(")
-    else:
-        i = id - 1
-        print(foundUsers[0].id, foundUsers[0].firstName,
-              foundUsers[0].lastName, foundUsers[0].age)
+    return query(["id"], [id])
 
 def viewAllUsers():
-    if len(users) > 0:
-        return users
-    else:
-        return None
+    return users if users else None
+
+def viewUsersByFirstName(firstName):
+    return query(["firstName"], [firstName])
 
 def deleteUser(id):
-    if id == 0 or id > len(users):
-        print("User does not exist :(")
-    else:
-        i = id - 1
-        print("User", users[i].firstName,
-              users[i].lastName, "will be deleted!")
-        users.pop(i)
+    index = next((i for i, user in enumerate(users) if user.id == id), None)
+    return users.pop(index) if index is not None else None
 
 def deleteAllusers():
     users.clear()
@@ -67,9 +54,12 @@ def deleteAllusers():
     ID = 1
     return True
 
-# createUser("Jack", "Daniels", 30)
-# createUser("Jim", "Bean", 40)
-# createUser("Don Julio", "Cristalino", 70)
-# deleteUser(2)
-# createUser("Jim", "Bean II", 44)
-# createUser("Elijah", "Craig", 55)
+def query(keys, values):
+    keyValues = createDictionary(keys, values)
+    res = []
+    for key, value in keyValues.items():
+        res = [user for user in users if getattr(user, key) == value]
+    return res if res else None
+
+def createDictionary(keys, values):
+    return dict(zip(keys, values))
