@@ -55,26 +55,16 @@ def deleteAllusers():
     return True
 
 def query(keys, values):
-    # keyValues = createDictionary(keys, values)
-    # res = []
-    # for key, value in keyValues.items():
-    #     res = [user for user in users if getattr(user, key) == value]
-    # return res if res else None
     keyValues = createDictionary(keys, values)
     index = 1
     queryRes = []
     res = "user for user in users if "
     for key, value in keyValues.items():
+        value = value if type(value) is int else f'\"{value}\"'
         if (index == 1):
-            if(type(value) is int):
-                res += f"getattr(user, \"{key}\") == {value}"
-            else:
-                res += f"getattr(user, \"{key}\") == \"{value}\""
+            res += f"getattr(user, \"{key}\") == {value}"
         else:
-            if(type(value) is int):
-                res += f" and getattr(user, \"{key}\") == {value}"
-            else:
-                res += f" and getattr(user, \"{key}\") == \"{value}\""
+            res += f" and getattr(user, \"{key}\") == {value}"
         index += 1
     res = "queryRes = [" + res + "]"
     lcls = locals()
