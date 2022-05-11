@@ -28,33 +28,33 @@ class UserMatcher:
             self.expected.lastName == other.lastName and \
             self.expected.age == other.age
 
-def createUser(firstName, lastName, age):
+def createUser(firstName: str, lastName: str, age: int) -> User:
     createdUser = User(firstName, lastName, age)
     users.append(createdUser)
     global ID
     ID += 1
     return createdUser
 
-def viewUser(id):
+def viewUser(id: int) -> list:
     return query(["id"], [id])
 
-def viewAllUsers():
+def viewAllUsers() -> list:
     return users if users else None
 
-def viewUsersByFirstName(firstName):
+def viewUsersByFirstName(firstName: str) -> list:
     return query(["firstName"], [firstName])
 
-def deleteUser(id):
+def deleteUser(id: int) -> list:
     index = next((i for i, user in enumerate(users) if user.id == id), None)
     return users.pop(index) if index is not None else None
 
-def deleteAllusers():
+def deleteAllusers() -> bool:
     users.clear()
     global ID
     ID = 1
     return True
 
-def query(keys, values):
+def query(keys, values) -> list:
     keyValues = createDictionary(keys, values)
     index = 1
     queryRes = []
@@ -72,5 +72,5 @@ def query(keys, values):
     queryRes = lcls["queryRes"]
     return queryRes if queryRes else None
 
-def createDictionary(keys, values):
+def createDictionary(keys, values) -> dict:
     return dict(zip(keys, values))
