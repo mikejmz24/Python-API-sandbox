@@ -7,19 +7,19 @@ class User:
     lastName: str
     age: int
 
-    def __init__(self, firstName, lastName, age):
+    def __init__(self, firstName: str, lastName: str, age: int) -> None:
         self.id = ID
         self.firstName = firstName
         self.lastName = lastName
         self.age = age
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"User(id={repr(self.id)}, firstName={repr(self.firstName)}, lastName={repr(self.lastName)}, age={repr(self.age)})"
 
 class UserMatcher:
     expected: User
 
-    def __init__(self, expected):
+    def __init__(self, expected) -> None:
         self.expected = expected
 
     def __eq__(self, other):

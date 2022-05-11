@@ -1,0 +1,12 @@
+[
+  "sample_Python_API_test.py::test_Users_are_created_with_an_auto_incremental_id_even_when_other_users_are_deleted",
+  "sample_Python_API_test.py::test_createUser_creates_and_returns_user_Jack_Daniels",
+  "sample_Python_API_test.py::test_deleteUser_removes_user_Jack_Daniels_from_users_list_and_returns_its_object_data",
+  "sample_Python_API_test.py::test_deleteUser_returns_None_when_user_id_does_not_find_any_match",
+  "sample_Python_API_test.py::test_query_finds_and_returns_two_Users_with_firstName_Don_Julio_and_age_1",
+  "sample_Python_API_test.py::test_viewAllUsers_returns_null_when_no_users_exist",
+  "sample_Python_API_test.py::test_viewAllUsers_returns_user_Jack_Daniels_and_user_Jim_Bean_object_data",
+  "sample_Python_API_test.py::test_viewUser_finds_and_returns_user_Jack_Daniels_data",
+  "sample_Python_API_test.py::test_viewUser_returns_None_when_no_user_matches_its_id",
+  "sample_Python_API_test.py::test_viewUsersByFirstName_returns_four_Users_named_Don_Julio"
+]
